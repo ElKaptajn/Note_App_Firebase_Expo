@@ -1,11 +1,12 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "firebase/compat/storage";
 
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBXZBIWKS7CH14Uq-Y7VSJKbORTE3JK8AU",
+  apiKey: "AIzaSyBXZBIWKS7CH14Uq-Y7VSJKbORTE3JK8AU",
   authDomain: "note-project---rn.firebaseapp.com",
   projectId: "note-project---rn",
   storageBucket: "note-project---rn.appspot.com",

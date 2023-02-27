@@ -4,16 +4,19 @@ import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../config";
 import { FlashList } from "@shopify/flash-list";
 import { Entypo } from "@expo/vector-icons";
+import { collection, query, orderBy} from "firebase/firestore";
 
 const Home = () => {
 
     const [notes, setNotes] = useState([])
     const navigation = useNavigation();
 
+
     // Fetch the data from firestore
     useEffect(() => {
         firebase.firestore()
         .collection("notes")
+        .orderBy("noteCreated", "desc")
         .onSnapshot((querySnapshot) => {
             const newNotes = [];
             querySnapshot.forEach((doc) => {
@@ -27,8 +30,8 @@ const Home = () => {
         <View style={styles.container}>
             <FlashList
                 data={notes}
-                numColumns={2}
-                estimatedItemSize={100}
+                numColumns={1}
+                estimatedItemSize={200}
                 renderItem={ ({item}) => (
                     <View style={styles.noteView}>
                         <Pressable
@@ -39,8 +42,8 @@ const Home = () => {
                             </Text>
                             <Text style={styles.noteDescription}>
                             {
-                            item.note.length > 40
-                            ? `${item.note.substring(0, 40)}...`
+                            item.note.length > 45
+                            ? `${item.note.substring(0, 45)}...`
                             : item.note
                             }
                             </Text>
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
         shadowOffset: {width:0, height: 2},
         shadowRadius: 2,
         elevation: 7,
-        alignItems: "center",
+        alignItems: "flex-start",
     },
     noteTitle: {
         fontSize: 16,

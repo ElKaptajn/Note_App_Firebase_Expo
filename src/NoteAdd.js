@@ -2,17 +2,20 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-nativ
 import React, { useState } from "react";
 import { firebase } from "../config"
 import { Keyboard } from "react-native";
+import UploadScreen from './UploadScreen';
 
 const NoteAdd = () => {
 
     const [title, setTitle] = useState("");
     const [note, setNote] = useState("");
 
+    const newNoteCreated = new Date();
+
     const handleAdd = () => {
         firebase.firestore()
         .collection("notes")
         .add({
-            title, note
+            title, note, noteCreated: newNoteCreated
         })
         .then(() => {
             setTitle("");
@@ -42,6 +45,7 @@ const NoteAdd = () => {
                 style={styles.inputNote}
                 multiline={true}
             />
+            <UploadScreen/>
             <TouchableOpacity
                 style={styles.button}
                 onPress={handleAdd}
