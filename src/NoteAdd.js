@@ -27,6 +27,11 @@ const NoteAdd = () => {
         });
     }
 
+    const handlePress = () => {
+        handleAdd();
+        uploadImage();
+    }
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -48,7 +53,7 @@ const NoteAdd = () => {
             <UploadScreen/>
             <TouchableOpacity
                 style={styles.button}
-                onPress={handleAdd}
+                onPress={handlePress}
             >
                 <Text style={styles.buttonText}>Add</Text>
             </TouchableOpacity>

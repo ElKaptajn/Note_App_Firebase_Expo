@@ -33,22 +33,23 @@ const Home = () => {
                 numColumns={1}
                 estimatedItemSize={200}
                 renderItem={ ({item}) => (
-                    <View style={styles.noteView}>
-                        <Pressable
-                            onPress= { () => navigation.navigate("Detail", {item} )}
-                        >
-                            <Text style={styles.noteTitle}>
-                                {item.title}
-                            </Text>
-                            <Text style={styles.noteDescription}>
-                            {
-                            item.note.length > 45
-                            ? `${item.note.substring(0, 45)}...`
-                            : item.note
-                            }
-                            </Text>
-                        </Pressable>
-                    </View>
+                    <Pressable
+                    onPress= { () => navigation.navigate("Detail", {item} )}
+                    >
+                        <View style={styles.noteView}>
+                
+                                <Text style={styles.noteTitle}>
+                                    {item.title}
+                                </Text>
+                                <Text style={styles.noteDescription}>
+                                {
+                                item.note.length > 45
+                                ? `${item.note.substring(0, 45)}...`
+                                : item.note
+                                }
+                                </Text>
+                        </View>
+                    </Pressable>
                 )}
             />
                 <TouchableOpacity
